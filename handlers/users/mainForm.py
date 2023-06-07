@@ -20,13 +20,15 @@ async def registration_start(message: types.Message):
            "который пройдет 20 июня в 19.00.\n\n" \
            "Персональная ссылка придет прямо в этот бот.\n\n" \
            "Мы обязательно оповестим заранее и ты точно не пропустишь! До встречи 20 июня❤\n️" \
-           "А сейчас можешь посмотреть вебинар «Как приручить страх»\n\n" \
-           "https://youtu.be/NN_itUaYxBI"
+           "А сейчас можешь посмотреть вебинар «Как приручить страх»\n\n"
+    link = "https://youtu.be/NN_itUaYxBI"
     if user:
-        await message.answer(text=text)
+        await message.answer(text=text, reply_markup=await MainForms.gift(link=link,
+                                                                          text="Посмотреть вебинар"))
     else:
         await CRUDUser.add(user=UsersSchema(user_id=message.from_user.id))
-        await message.answer(text=text)
+        await message.answer(text=text, reply_markup=await MainForms.gift(link=link,
+                                                                          text="Посмотреть вебинар"))
 
     #827543744
 
