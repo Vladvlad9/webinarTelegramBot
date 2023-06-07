@@ -1,0 +1,16 @@
+{
+  "BOT": {
+    "TOKEN": "6233304816:AAFFdovZVU9Q6zYLPtpBd7K0qkF87YNpnYI",
+    "ADMINS": [381252111, 827543744]
+  },
+  "ADDCOURSE": {
+    "NAME": "",
+    "DESCRIPTION": "",
+    "KW1": "",
+    "KW2": "",
+    "KW3": "",
+    "DT": "",
+    "LINK": ""
+  },
+  "DATABASE": "postgres:postgres@localhost:5432/webinarBot"
+}
