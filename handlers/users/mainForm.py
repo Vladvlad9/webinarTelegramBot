@@ -323,6 +323,24 @@ async def registration_start10(message: types.Message):
     await asyncio.gather(*tasks3, return_exceptions=True)
 
 
+@dp.message_handler(IsAdmin(), commands=["8test"])  # в конце урока!!!
+async def registration_start8(message: types.Message):
+    text8 = "Спасибо всем, кто был онлайн❤️\n" \
+            "А для всех, кто не смог, мы сделали запись! Она доступна 24 часа🔥\n" \
+            "Было пушечно! ⬇️\n\n" \
+            "Код доступа: 9=*Qc*Xi"
+
+    tasks8 = []
+    link8 = "https://us02web.zoom.us/rec/share/c9swLy2xwyu6Hr9Yp-VGqUYyv1k44gjfRf-ZhoT-bm2MNEwo8IICEfVp0zLcH9IQ.QAfkhz9llykBEZGi"
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.gift(link=link8,
+                                                                         text="Ссылка")))
+
+    await asyncio.gather(*tasks8, return_exceptions=True)
+
 @dp.message_handler(IsAdmin(), commands=["texpod"])  # в конце урока!!!
 async def registration_start8(message: types.Message):
     text8 = "Идентификатор конференции: 825 5638 3687\n" \
