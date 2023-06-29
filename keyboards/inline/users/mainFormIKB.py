@@ -32,6 +32,34 @@ class MainForms:
         )
 
     @staticmethod
+    async def get_dock() -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text="Рассрочка",
+                                         callback_data=main_cb.new("Document", 0, 0))
+                ]
+            ]
+        )
+
+    @staticmethod
+    async def gift2(link: str, text: str, link2: str, text2: str) -> InlineKeyboardMarkup:
+        return InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(text=text,
+                                         url=link,
+                                         callback_data=main_cb.new(0, 0, 0))
+                ],
+                [
+                    InlineKeyboardButton(text=text2,
+                                         url=link2,
+                                         callback_data=main_cb.new(0, 0, 0))
+                ]
+            ]
+        )
+
+    @staticmethod
     async def mainMenu() -> InlineKeyboardMarkup:
         return InlineKeyboardMarkup(
             inline_keyboard=[
@@ -56,6 +84,9 @@ class MainForms:
 
                     await callback.message.edit_text(text=text,
                                                      reply_markup=await MainForms.mainMenu())
+
+                elif data.get('target') == "Document":
+                    await callback.message.reply_document(open('/opt/git/webinarTelegramBot/Installment.docx', 'rb'))
 
         if message:
             await message.delete()

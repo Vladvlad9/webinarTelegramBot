@@ -2,6 +2,7 @@ import asyncio
 
 from aiogram import types
 from aiogram.dispatcher.storage import FSMContext
+from aiogram.types import MediaGroup, InputFile
 from aiogram.utils.exceptions import BadRequest
 
 from config import CONFIG
@@ -74,7 +75,7 @@ async def registration_start2(message: types.Message):
 async def registration_start3(message: types.Message):
     text = "Это снова я, Есения Сергеева. Уже через час встречаемся с вами на моем вебинаре «Клиенты из инстаграм»\n"
     tasks = []
-    link = CONFIG.ADDCOURSE.LINK
+    link = "https://us02web.zoom.us/j/82556383687?pwd=V1VmMkgyQlpEQUxxUXpKRU0xYWpRUT09"
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
@@ -87,15 +88,21 @@ async def registration_start3(message: types.Message):
 
 @dp.message_handler(IsAdmin(), commands=["4"])  # за 15 минут #Добавить ссылку через Config
 async def registration_start4(message: types.Message):
-    text = "Вебинар начнется через 15 минут! Не опаздывай! Будет жарко🔥\n"
+    text = "Привет, на связи Есения!\n" \
+           "Через 15 минут встретимся в прямом эфире🔥\n\n" \
+           "Готовь ручку и блокнот! Будет, как обычно, четко и по делу😉\n\n" \
+           "Идентификатор конференции: 825 5638 3687\n" \
+           "Код доступа: 860148\n\n" \
+           "Техническая поддержка ➡️ https://t.me/sshlyomina\n"
     tasks = []
-    link = CONFIG.ADDCOURSE.LINK
+    link = "https://us02web.zoom.us/j/82556383687?pwd=V1VmMkgyQlpEQUxxUXpKRU0xYWpRUT09"
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
                                       text=text,
                                       reply_markup=await MainForms.gift(link=link,
-                                                                        text="Ссылка на вход")))
+                                                                        text="Ссылка на вход"),
+                                      disable_web_page_preview=True))
 
     await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -106,7 +113,7 @@ async def registration_start5(message: types.Message):
            "какие ошибки допускают мастера и эксперты и недополучают клиентов и деньги! \n"
 
     tasks = []
-    link = CONFIG.ADDCOURSE.LINK
+    link = "https://us02web.zoom.us/j/82556383687?pwd=V1VmMkgyQlpEQUxxUXpKRU0xYWpRUT09"
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
@@ -124,7 +131,7 @@ async def registration_start6(message: types.Message):
            "Присоединяйся!\n"
 
     tasks = []
-    link = CONFIG.ADDCOURSE.LINK
+    link = "https://us02web.zoom.us/j/82556383687?pwd=V1VmMkgyQlpEQUxxUXpKRU0xYWpRUT09"
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
@@ -143,8 +150,14 @@ async def registration_start7(message: types.Message):
            "Курс стартует 7 июля. Оплатить его можно в рассрочку🔥\n" \
            "Для этого забронируйте место на курсе по специальной цене в течение суток⬇️"
 
+    text8 = "Или напишите мне, чтобы обсудить участие и варианты оплаты"
+
     tasks = []
+    tasks8 = []
+
     link = "https://eseniyasergeeva.by"
+    link8 = "https://t.me/esenia_sergeeva"
+
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
@@ -152,67 +165,194 @@ async def registration_start7(message: types.Message):
                                       reply_markup=await MainForms.gift(link=link,
                                                                         text="Забронировать место")))
 
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.gift(link=link8,
+                                                                         text="Ссылка на мой тг")))
+
     await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks8, return_exceptions=True)
 
 
 @dp.message_handler(IsAdmin(), commands=["8"])  # в конце урока!!!
 async def registration_start8(message: types.Message):
-    text = "Или напишите мне, чтобы обсудить участие и варианты оплаты"
+    text8 = "Или напишите мне, чтобы обсудить участие и варианты оплаты"
 
-    tasks = []
-    link = "https://t.me/esenia_sergeeva"
+    tasks8 = []
+    link8 = "https://t.me/esenia_sergeeva"
     users = await CRUDUser.get_all()
     for user in users:
-        tasks.append(bot.send_message(chat_id=user.user_id,
-                                      text=text,
-                                      reply_markup=await MainForms.gift(link=link,
-                                                                        text="Ссылка на мой тг")))
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.gift(link=link8,
+                                                                         text="Ссылка на мой тг")))
 
-    await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks8, return_exceptions=True)
 
 
 @dp.message_handler(IsAdmin(), commands=["9"])  # в конце урока!!!
+async def registration_start10(message: types.Message):
+    users = await CRUDUser.get_all()
+    tasks = []
+    tasks2 = []
+    tasks3 = []
+    tasks4 = []
+    tasks5 = []
+
+    tasks2Text = 'Привет! Это снова я, Есения Сергеева. Только что я рассказала о том, ' \
+                 'как получать клиентов из инстаграм в теории.\n' \
+                 'Но бизнес- это регулярная практика и система!\n ' \
+                 'Именно построением такой системы мы будем заниматься на моем курсе UP.\n' \
+                 'Курс стартует 7 июля. Оплатить его можно в рассрочку🔥'
+
+    tasks3Text = "Чтобы забронировать место на курсе по специальной цене в " \
+                 "течение суток и оплатить полностью, выберите тариф из предложенных ниже⬇️"
+
+    tasks4Text = "Чтобы забронировать место и внести предоплату 100 byn на любой тариф, перейдите на " \
+                 "сайт и в окошке «выбрать тариф» нажмите необходимый⬇️"
+
+    tasks5Text = "Чтобы получить подробности о рассрочке, нажми сюда⬇️️"
+
+    album = MediaGroup()
+    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/1.jpg')
+    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/2.jpg')
+
+    album.attach_photo(photo=photo1)
+    album.attach_photo(photo=photo2)
+
+    link3 = "https://1drv.ms/w/s!Ag6XhthO_RvegV7R64K-SVsV_Xo1"
+
+    for user in users:
+        tasks.append(bot.send_media_group(chat_id=user.user_id, media=album))
+        tasks2.append(bot.send_message(chat_id=user.user_id, text=tasks2Text,
+                                       reply_markup=await MainForms.gift(link="https://eseniyasergeeva.by",
+                                                                         text="Сайт")))
+
+        tasks3.append(bot.send_message(chat_id=user.user_id, text=tasks3Text,
+                                       reply_markup=await MainForms.gift2(link="https://checkout.bepaid.by/v2/confirm_order/prd_f83d0244e5287e22/21195",
+                                                                          text="я сама 444 byn",
+                                                                          link2="https://checkout.bepaid.by/v2/confirm_order/prd_985dcc14f7acd5c1/21195",
+                                                                          text2="vip 1300 byn")))
+
+        tasks4.append(bot.send_message(chat_id=user.user_id, text=tasks4Text,
+                                       reply_markup=await MainForms.gift(link="https://eseniyasergeeva.by",
+                                                                         text="Сайт")))
+
+        tasks5.append(bot.send_message(chat_id=user.user_id,
+                                       text=tasks5Text,
+                                       reply_markup=await MainForms.gift(link=link3, text="Рассрочка")))
+
+    await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks2, return_exceptions=True)
+    await asyncio.gather(*tasks3, return_exceptions=True)
+    await asyncio.gather(*tasks4, return_exceptions=True)
+    await asyncio.gather(*tasks5, return_exceptions=True)
+
+
+@dp.message_handler(IsAdmin(), commands=["10"])  # в конце урока!!!
 async def registration_start9(message: types.Message):
     text = "Осталось 12 часов до повышения цены!\n" \
            "Привет! Через 12 часов цена на обучение вырастет и ты еще успеваешь запрыгнуть в последний вагон!\n" \
            "Успевай забронировать место по приятной цене и приходи выстраивать бизнес из своего " \
            "любимого дела на курс «UP»\n" \
            "Курс стартует 7 июля.\n" \
-           "Оплатить его можно в рассрочку." \
+           "Оплатить его можно в рассрочку."
+
+    text8 = "Или напишите мне, чтобы обсудить участие и варианты оплаты"
 
     tasks = []
+    tasks8 = []
+
     link = "https://eseniyasergeeva.by"
+    link8 = "https://t.me/esenia_sergeeva"
+
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
                                       text=text,
                                       reply_markup=await MainForms.gift(link=link, text="Забронировать место")))
 
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.gift(link=link8,
+                                                                         text="Ссылка на мой тг")))
+
     await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks8, return_exceptions=True)
 
 
-@dp.message_handler(IsAdmin(), commands=["10"])  # в конце урока!!!
+@dp.message_handler(IsAdmin(), commands=["11"])  # в конце урока!!!
 async def registration_start10(message: types.Message):
     text = "Осталось всего 3 часа..\n" \
            "Сколько можно откладывать свои желания? Жизнь - это то, что происходит здесь и сейчас!\n" \
            "Через 3 часа спецпредложение закончится, поэтому успевай забрать свой последний шанс и " \
            "забронировать место на курс!\n" \
            "Наличие мест:\n" \
-           "✨С поддержкой 3\n" \
            "✨VIP с Есенией 2\n\n" \
            "Бронируй свое место, оплачивай в рассрочку и начнем строить дело мечты, приносящее деньги, " \
            "а не проблемы ❤️\n" \
-           "Стартуем 7 июля! Запрыгивай " \
+           "Стартуем 7 июля! Запрыгивай "
+
+    txt2 = "Или напишите мне, чтобы обсудить участие и варианты оплаты"
+    tasks3Text = "Чтобы получить подробности о рассрочке, нажми сюда⬇️️"
 
     tasks = []
+    tasks2 = []
+    tasks3 = []
+
     link = "https://eseniyasergeeva.by"
+    link2 = "https://t.me/esenia_sergeeva"
+    link3 = "https://1drv.ms/w/s!Ag6XhthO_RvegV7R64K-SVsV_Xo1"
+
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
                                       text=text,
                                       reply_markup=await MainForms.gift(link=link, text="Ссылка на сайт")))
 
+        tasks2.append(bot.send_message(chat_id=user.user_id,
+                                       text=txt2,
+                                       reply_markup=await MainForms.gift(link=link2, text="Ссылка на мой тг")))
+
+        tasks3.append(bot.send_message(chat_id=user.user_id,
+                                       text=tasks3Text,
+                                       reply_markup=await MainForms.gift(link=link3, text="Рассрочка")))
+
     await asyncio.gather(*tasks, return_exceptions=True)
+    await asyncio.gather(*tasks2, return_exceptions=True)
+    await asyncio.gather(*tasks3, return_exceptions=True)
+
+
+@dp.message_handler(IsAdmin(), commands=["texpod"])  # в конце урока!!!
+async def registration_start8(message: types.Message):
+    text8 = "Идентификатор конференции: 825 5638 3687\n" \
+            "Код доступа: 860148\n\n" \
+            "Техническая поддержка ➡️ https://t.me/sshlyomina"
+
+    tasks8 = []
+    link8 = "https://us02web.zoom.us/j/82556383687?pwd=V1VmMkgyQlpEQUxxUXpKRU0xYWpRUT09"
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.gift(link=link8,
+                                                                         text="Ссылка на вход")))
+
+    await asyncio.gather(*tasks8, return_exceptions=True)
+
+
+@dp.message_handler(IsAdmin(), commands=["doc"])  # в конце урока!!!
+async def registration_start8(message: types.Message):
+    text8 = "Чтобы получить подробности о рассрочке, нажми сюда⬇"
+
+    tasks8 = []
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks8.append(bot.send_message(chat_id=user.user_id,
+                                       text=text8,
+                                       reply_markup=await MainForms.get_dock()))
+
+    await asyncio.gather(*tasks8, return_exceptions=True)
 
 
 @dp.message_handler(IsAdmin(), commands=["link"])  # в конце урока!!!
