@@ -13,6 +13,13 @@ class Users(Base):
     user_id = Column(BigInteger)
 
 
+class NewUser(Base):
+    __tablename__: str = "newuser"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(BigInteger)
+
+
 class Course(Base):
     __tablename__ = "courses"
 

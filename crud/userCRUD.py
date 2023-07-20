@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import select, update, delete, and_
 
-from models import Users, create_async_session
+from models import Users, create_async_session, NewUser
 from schemas import UsersInDBSchema, UsersSchema
 
 
@@ -12,6 +12,21 @@ class CRUDUser(object):
     @create_async_session
     async def add(user: UsersSchema, session: AsyncSession = None) -> UsersInDBSchema | None:
         users = Users(
+            **user.dict()
+        )
+        session.add(users)
+        try:
+            await session.commit()
+        except IntegrityError:
+            pass
+        else:
+            await session.refresh(users)
+            return UsersInDBSchema(**users.__dict__)
+
+    @staticmethod
+    @create_async_session
+    async def addNew(user: UsersSchema, session: AsyncSession = None) -> UsersInDBSchema | None:
+        users = NewUser(
             **user.dict()
         )
         session.add(users)
