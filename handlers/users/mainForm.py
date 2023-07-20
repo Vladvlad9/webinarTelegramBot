@@ -14,13 +14,6 @@ from schemas import UsersSchema
 from states.users.userStates import UserStates
 
 
-@dp.message_handler(commands=["newtest"])  # +
-async def registration_start(message: types.Message):
-    with open('1.txt') as f:
-        for i in f:
-            await CRUDUser.addNew(user=UsersSchema(user_id=int(i)))
-
-
 @dp.message_handler(commands=["start"])  # +
 async def registration_start(message: types.Message):
     user = await CRUDUser.get(user_id=message.from_user.id)

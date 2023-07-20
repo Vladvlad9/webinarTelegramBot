@@ -25,21 +25,6 @@ class CRUDUser(object):
 
     @staticmethod
     @create_async_session
-    async def addNew(user: UsersSchema, session: AsyncSession = None) -> UsersInDBSchema | None:
-        users = NewUser(
-            **user.dict()
-        )
-        session.add(users)
-        try:
-            await session.commit()
-        except IntegrityError:
-            pass
-        else:
-            await session.refresh(users)
-            return UsersInDBSchema(**users.__dict__)
-
-    @staticmethod
-    @create_async_session
     async def delete(user_id: int, session: AsyncSession = None) -> None:
         await session.execute(
             delete(Users).where(Users.id == user_id)
