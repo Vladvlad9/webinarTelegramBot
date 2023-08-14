@@ -72,6 +72,7 @@ async def registration_start1(message: types.Message):
            "Техническая поддержка ➡️ https://t.me/sshlyomina"
     tasks = []
     link = "https://us02web.zoom.us/j/85184416076?pwd=djZYeHlCNUR4UWhLd1hGQkp6Y29wZz09"
+    link = "https://us02web.zoom.us/j/85090617502?pwd=K0dBSXpMZ2s1SXRLaTgzU2tOUTFydz09"
     users = await CRUDUser.get_all()
     for user in users:
         tasks.append(bot.send_message(chat_id=user.user_id,
@@ -100,6 +101,22 @@ async def registration_start1(message: types.Message):
                                       ))
 
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
+
+
+@dp.message_handler(IsAdmin(), commands=["44"])  # 31 июля в 22.00
+async def registration_start1(message: types.Message):
+    text = "Мы закончили! Запись я размещу в боте (здесь) завтра! " \
+           "Она будет доступна 1 месяц и ты сможешь посмотреть тренинг в любое удобное для тебя время❤️"
+    tasks = []
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks.append(bot.send_message(chat_id=user.user_id,
+                                      text=text,
+                                      disable_web_page_preview=True
+                                      ))
+
+    await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
+
 
 
 @dp.message_handler(IsAdmin(), commands=["5"])  # 1 августа в 10.00
