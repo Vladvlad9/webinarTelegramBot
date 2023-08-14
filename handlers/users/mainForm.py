@@ -118,6 +118,32 @@ async def registration_start1(message: types.Message):
 
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
 
+
+@dp.message_handler(IsAdmin(), commands=["6"])  # 13 августа в 10.00
+async def registration_start1(message: types.Message):
+
+    tasks = []
+    audio = open(r'Денежная медитация.mp3', 'rb')
+
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks.append(bot.send_audio(user.user_id, audio))
+    await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
+    audio.close()
+
+
+@dp.message_handler(IsAdmin(), commands=["7"])  # 1 августа в 10.00
+async def registration_start1(message: types.Message):
+    text = "Денежная медитация в подарок от меня, чтобы закрепить и усилить эффект от тренинга❤️"
+    tasks = []
+    users = await CRUDUser.get_all()
+    for user in users:
+        tasks.append(bot.send_message(chat_id=user.user_id,
+                                      text=text
+                                      ))
+
+    await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
+
 # @dp.message_handler(commands=["start"])  # +
 # async def registration_start(message: types.Message):
 #     user = await CRUDUser.get(user_id=message.from_user.id)
@@ -444,6 +470,16 @@ async def registration_start1(message: types.Message):
 #                                                                          text="Ссылка")))
 #
 #     await asyncio.gather(*tasks8, return_exceptions=True)
+
+
+@dp.message_handler(IsAdmin(), commands=["testAudio"])  # 13 августа в 10.00
+async def registration_start1(message: types.Message):
+
+    tasks = []
+    audio = open(r'/opt/git/webinarTelegramBot/Денежная медитация.mp3', 'rb')
+    tasks.append(bot.send_audio(message.from_user.id, audio))
+    await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
+    audio.close()
 
 
 @dp.message_handler(IsAdmin(), commands=["getTXT"])  # в конце урока!!!
