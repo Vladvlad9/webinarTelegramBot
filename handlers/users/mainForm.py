@@ -46,7 +46,7 @@ async def registration_start1(message: types.Message):
 async def registration_start1(message: types.Message):
     text = "Привет! Ты готова?\n" \
            "Встречаемся сегодня в 13.00!\n" \
-           "Расскажу, как выйти на стабильных доход с продажи своих услуг через инстаграм!\n\n" \
+           "Расскажу, как выйти на стабильный доход с продажи своих услуг через инстаграм!\n\n" \
            "Идентификатор конференции: 864 3709 6977\n" \
            "Код доступа: 634134\n\n" \
            "Техническая поддержка ➡️ https://t.me/sshlyomina"
@@ -141,9 +141,9 @@ async def registration_start1(message: types.Message):
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
 
     album = MediaGroup()  # /opt/git/webinarTelegramBot
-    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/1.jpg')
-    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/2.jpg')
-    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/3.jpg')
+    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/1.jpg')
+    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/2.jpg')
+    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/3.jpg')
 
     tasks2 = []
     album.attach_photo(photo=photo1)
@@ -179,9 +179,9 @@ async def registration_start1(message: types.Message):
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
 
     album = MediaGroup()  # /opt/git/webinarTelegramBot/
-    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/1.jpg')
-    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/2.jpg')
-    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/3.jpg')
+    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/1.jpg')
+    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/2.jpg')
+    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/3.jpg')
 
     tasks2 = []
     album.attach_photo(photo=photo1)
