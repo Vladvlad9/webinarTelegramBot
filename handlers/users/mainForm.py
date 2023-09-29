@@ -141,9 +141,9 @@ async def registration_start1(message: types.Message):
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
 
     album = MediaGroup()  # /opt/git/webinarTelegramBot
-    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/1.jpg')
-    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/2.jpg')
-    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/3.jpg')
+    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/1.jpg')
+    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/2.jpg')
+    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/3.jpg')
 
     tasks2 = []
     album.attach_photo(photo=photo1)
@@ -178,10 +178,10 @@ async def registration_start1(message: types.Message):
                                       ))
     await asyncio.gather(*tasks, return_exceptions=True)  # Отправка всем админам сразу
 
-    album = MediaGroup()  # /opt/git/webinarTelegramBot
-    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/1.jpg')
-    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/2.jpg')
-    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/p/3.jpg')
+    album = MediaGroup()  # /opt/git/webinarTelegramBot/
+    photo1 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/1.jpg')
+    photo2 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/2.jpg')
+    photo3 = InputFile(path_or_bytesio='/opt/git/webinarTelegramBot/photo/3.jpg')
 
     tasks2 = []
     album.attach_photo(photo=photo1)
