@@ -17,7 +17,7 @@ depends_on = None
 
 
 def upgrade() -> None:
-    op.create_table('usersNew',
+    op.create_table('newuser',
                     sa.Column('id', sa.BigInteger(), nullable=False),
                     sa.Column('user_id', sa.BigInteger(), nullable=False),
                     sa.PrimaryKeyConstraint('id')
@@ -25,4 +25,4 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table('users')
+    op.drop_table('newuser')
