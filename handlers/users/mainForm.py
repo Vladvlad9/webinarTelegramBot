@@ -200,6 +200,7 @@ async def registration_start1(message: types.Message):
 @dp.message_handler(IsAdmin(), commands=["71"])  # 13 августа в 10.00
 async def registration_start1(message: types.Message):
     try:
+
         users = await CRUDUser.get_all()
         arr = ["/opt/git/webinarTelegramBot/1.jpg",
                "/opt/git/webinarTelegramBot/2.jpg",
