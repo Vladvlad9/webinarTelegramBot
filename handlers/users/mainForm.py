@@ -199,23 +199,26 @@ async def registration_start1(message: types.Message):
 
 @dp.message_handler(IsAdmin(), commands=["71"])  # 13 августа в 10.00
 async def registration_start1(message: types.Message):
-    users = await CRUDUser.get_all()
-    album = MediaGroup()
-    arr = ["/opt/git/webinarTelegramBot/1.jpg",
-           "/opt/git/webinarTelegramBot/2.jpg",
-           "/opt/git/webinarTelegramBot/3.jpg"]
+    try:
+        users = await CRUDUser.get_all()
+        album = MediaGroup()
+        arr = ["/opt/git/webinarTelegramBot/1.jpg",
+               "/opt/git/webinarTelegramBot/2.jpg",
+               "/opt/git/webinarTelegramBot/3.jpg"]
 
-    for ar in arr:
-        photo = open(ar, "rb")
-        album.attach_photo(photo=photo)
+        for ar in arr:
+            photo = open(ar, "rb")
+            album.attach_photo(photo=photo)
 
-    tasks2 = []
-    for user in users:
-        tasks2.append(bot.send_media_group(chat_id=user.user_id,
-                                           media=album
-                                           ))
+        tasks2 = []
+        for user in users:
+            tasks2.append(bot.send_media_group(chat_id=user.user_id,
+                                               media=album
+                                               ))
 
-    await asyncio.gather(*tasks2, return_exceptions=True)  # Отправка всем админам сразу
+        await asyncio.gather(*tasks2, return_exceptions=True)  # Отправка всем админам сразу
+    except Exception as e:
+        await message.answer(text=str(e))
 
 
 @dp.message_handler(IsAdmin(), commands=["testAudio"])  # 13 августа в 10.00
