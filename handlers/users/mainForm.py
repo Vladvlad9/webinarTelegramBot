@@ -199,26 +199,32 @@ async def registration_start1(message: types.Message):
         await message.answer(text=str(e))
 
 
-@dp.message_handler(IsAdmin(), commands=["71"])  # 13 августа в 10.00
-async def registration_start1(message: types.Message):
-    try:
+@dp.message_handler(IsAdmin(), commands=["stata"])  # в конце урока!!!
+async def registration_start8(message: types.Message):
+    count_user = await CRUDUser.get_all()
+    await message.answer(text=f"Пользователей в боте - {len(count_user)}")
 
-        users = await CRUDUser.get_all()
-        arr = ["/opt/git/webinarTelegramBot/1.jpg",
-               "/opt/git/webinarTelegramBot/2.jpg",
-               "/opt/git/webinarTelegramBot/3.jpg"]
-
-        tasks2 = []
-        for user in users:
-            for ar in arr:
-                photo = open(ar, "rb")
-                tasks2.append(bot.send_photo(chat_id=user.user_id,
-                                             photo=photo
-                                             ))
-
-        await asyncio.gather(*tasks2, return_exceptions=True)  # Отправка всем админам сразу
-    except Exception as e:
-        await message.answer(text=str(e))
+#
+# @dp.message_handler(IsAdmin(), commands=["71"])  # 13 августа в 10.00
+# async def registration_start1(message: types.Message):
+#     try:
+#
+#         users = await CRUDUser.get_all()
+#         arr = ["/opt/git/webinarTelegramBot/1.jpg",
+#                "/opt/git/webinarTelegramBot/2.jpg",
+#                "/opt/git/webinarTelegramBot/3.jpg"]
+#
+#         tasks2 = []
+#         for user in users:
+#             for ar in arr:
+#                 photo = open(ar, "rb")
+#                 tasks2.append(bot.send_photo(chat_id=user.user_id,
+#                                              photo=photo
+#                                              ))
+#
+#         await asyncio.gather(*tasks2, return_exceptions=True)  # Отправка всем админам сразу
+#     except Exception as e:
+#         await message.answer(text=str(e))
 
 
 @dp.message_handler(IsAdmin(), commands=["testAudio"])  # 13 августа в 10.00
@@ -231,30 +237,30 @@ async def registration_start1(message: types.Message):
     audio.close()
 
 
-@dp.message_handler(IsAdmin(), commands=["getTXT"])  # в конце урока!!!
-async def registration_start8(message: types.Message):
-    text8 = "Привет, милые! ❤️\n" \
-            "Я с новостью 🔥\n" \
-            "В каком-то невероятном потоке и энергии благодарности и любви я написала тренинг для тех, " \
-            "с кем мы точно совпадаем энергиями!\n\n" \
-            "PROденьги - для тех, кто хочет построить здоровые и крепкие отношения с деньгами и " \
-            "выйти из созависимости✨\n\n" \
-            "31 июля в 19.00 я проведу тренинг онлайн, который нельзя будет пройти повторно и доступ к " \
-            "которому будет только у тех, кто хотя бы однажды со мной контактировал! " \
-            "Тренинг по любви, чтобы навсегда избавиться от мусора в голове, который мешает зарабатывать‼\n\n" \
-            "🔝Цена, которая является символической, доступна только для любимых и близких➡️ 11$\n\n" \
-            "Переходите по ссылке и читайте подробности"
-
-    tasks8 = []
-    link8 = "http://project7593041.tilda.ws/"
-    users = await CRUDUser.get_all()
-    for user in users:
-        tasks8.append(bot.send_message(chat_id=user.user_id,
-                                       text=text8,
-                                       reply_markup=await MainForms.gift(link=link8,
-                                                                         text="Ссылка")))
-
-    await asyncio.gather(*tasks8, return_exceptions=True)
+# @dp.message_handler(IsAdmin(), commands=["getTXT"])  # в конце урока!!!
+# async def registration_start8(message: types.Message):
+#     text8 = "Привет, милые! ❤️\n" \
+#             "Я с новостью 🔥\n" \
+#             "В каком-то невероятном потоке и энергии благодарности и любви я написала тренинг для тех, " \
+#             "с кем мы точно совпадаем энергиями!\n\n" \
+#             "PROденьги - для тех, кто хочет построить здоровые и крепкие отношения с деньгами и " \
+#             "выйти из созависимости✨\n\n" \
+#             "31 июля в 19.00 я проведу тренинг онлайн, который нельзя будет пройти повторно и доступ к " \
+#             "которому будет только у тех, кто хотя бы однажды со мной контактировал! " \
+#             "Тренинг по любви, чтобы навсегда избавиться от мусора в голове, который мешает зарабатывать‼\n\n" \
+#             "🔝Цена, которая является символической, доступна только для любимых и близких➡️ 11$\n\n" \
+#             "Переходите по ссылке и читайте подробности"
+#
+#     tasks8 = []
+#     link8 = "http://project7593041.tilda.ws/"
+#     users = await CRUDUser.get_all()
+#     for user in users:
+#         tasks8.append(bot.send_message(chat_id=user.user_id,
+#                                        text=text8,
+#                                        reply_markup=await MainForms.gift(link=link8,
+#                                                                          text="Ссылка")))
+#
+#     await asyncio.gather(*tasks8, return_exceptions=True)
 
 
 @dp.message_handler(IsAdmin(), commands=["doc"])  # в конце урока!!!
